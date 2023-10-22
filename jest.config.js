@@ -18,5 +18,11 @@ module.exports = {
 		'!<rootDir>/packages/**/src/constants.ts'
 	],
 	moduleDirectories: ['node_modules'],
-	projects: []
+	projects: [
+		{
+			displayName: 'auth',
+			testMatch: ['<rootDir>/tests/auth/*.spec.ts'],
+			transform
+		}
+	]
 };
