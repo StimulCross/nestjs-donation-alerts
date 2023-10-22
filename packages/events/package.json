@@ -1,0 +1,62 @@
+{
+	"name": "@nestjs-donation-alerts/events",
+	"version": "0.0.1",
+	"publishConfig": {
+		"access": "public"
+	},
+	"description": "A NestJS wrapper for @donation-alerts/events package",
+	"keywords": [
+		"nestjs",
+		"nest",
+		"donations",
+		"donation-alerts",
+		"api",
+		"stream",
+		"bot",
+		"events"
+	],
+	"sideEffects": false,
+	"main": "lib",
+	"types": "lib",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/stimulcross/nestjs-donation-alerts.git",
+		"directory": "packages/events"
+	},
+	"homepage": "https://github.com/stimulcross/nestjs-donation-alerts",
+	"author": "Stimul Cross <stimulcross@gmail.com>",
+	"license": "MIT",
+	"engines": {
+		"node": ">=16"
+	},
+	"scripts": {
+		"build": "tsc -p ./tsconfig.json",
+		"rebuild": "yarn clear && yarn build",
+		"clear": "rimraf lib",
+		"test": "jest --config \"../../jest.config.js\" --selectProjects auth --runInBand",
+		"test:verbose": "jest --config \"../../jest.config.js\" --selectProjects auth --verbose --runInBand"
+	},
+	"peerDependencies": {
+		"@nestjs/common": "*",
+		"@nestjs/core": "*",
+		"@donation-alerts/api": "^3",
+		"@donation-alerts/events": "^3",
+		"reflect-metadata": "^0.1.13",
+		"rxjs": "*"
+	},
+	"devDependencies": {
+		"@nestjs/common": "^10.2.7",
+		"@nestjs/core": "^10.2.7",
+		"@donation-alerts/api": "^3.0.1",
+		"@donation-alerts/events": "^3.0.1",
+		"reflect-metadata": "^0.1.13",
+		"rimraf": "^5.0.5",
+		"rxjs": "^7.8.1"
+	},
+	"files": [
+		"LICENSE",
+		"README.md",
+		"lib",
+		"!lib/**/*.d.ts.map"
+	]
+}
