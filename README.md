@@ -154,7 +154,7 @@ export class AppModule {}
 
 ### Global Modules
 
-Making modules global (`isGlobal: true`) means they can be accessed from anywhere in your app no matter where they were registered. In most cases, this is desirable behavior, since you need only the single instance of auth provider, API client, chat client, etc.
+Making modules global (`isGlobal: true`) means they can be accessed from anywhere in your app no matter where they were registered. In most cases, this is desirable behavior, since you need only the single instance of auth provider, API client, and events client.
 
 But you can also create an encapsulated module that will be visible only inside the module scope where it was registered.
 
