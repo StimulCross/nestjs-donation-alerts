@@ -23,6 +23,11 @@ module.exports = {
 			displayName: 'auth',
 			testMatch: ['<rootDir>/tests/auth/*.spec.ts'],
 			transform
+		},
+		{
+			displayName: 'api',
+			testMatch: ['<rootDir>/tests/api/*.spec.ts'],
+			transform
 		}
 	]
 };
