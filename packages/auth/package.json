@@ -40,14 +40,14 @@
 	"peerDependencies": {
 		"@nestjs/common": "*",
 		"@nestjs/core": "*",
-		"@twurple/auth": "^2",
+		"@donation-alerts/auth": "^3",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "*"
 	},
 	"devDependencies": {
 		"@nestjs/common": "^10.2.7",
 		"@nestjs/core": "^10.2.7",
-		"@donation-alerts/auth": "^3",
+		"@donation-alerts/auth": "^3.0.1",
 		"reflect-metadata": "^0.1.13",
 		"rimraf": "^5.0.5",
 		"rxjs": "^7.8.1"
