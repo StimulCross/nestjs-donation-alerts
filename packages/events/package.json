@@ -37,18 +37,18 @@
 		"test:verbose": "jest --config \"../../jest.config.js\" --selectProjects auth --verbose --runInBand"
 	},
 	"peerDependencies": {
-		"@nestjs/common": "*",
-		"@nestjs/core": "*",
 		"@donation-alerts/api": "^3",
 		"@donation-alerts/events": "^3",
+		"@nestjs/common": "*",
+		"@nestjs/core": "*",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "*"
 	},
 	"devDependencies": {
-		"@nestjs/common": "^10.2.7",
-		"@nestjs/core": "^10.2.7",
 		"@donation-alerts/api": "^3.0.1",
 		"@donation-alerts/events": "^3.0.1",
+		"@nestjs/common": "^10.2.7",
+		"@nestjs/core": "^10.2.7",
 		"reflect-metadata": "^0.1.13",
 		"rimraf": "^5.0.5",
 		"rxjs": "^7.8.1"
@@ -58,5 +58,6 @@
 		"README.md",
 		"lib",
 		"!lib/**/*.d.ts.map"
-	]
+	],
+	"gitHead": "f26a502ad0cd366303ac1819022cbb355316009b"
 }
