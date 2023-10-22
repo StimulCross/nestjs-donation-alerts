@@ -104,7 +104,7 @@ export class CustomProvider {
 }
 ```
 
-Alternatively, you can use `DONATION_ALERTS_EVENTS_CLIENT` token to inject the `ApiClient` instance:
+Alternatively, you can use `DONATION_ALERTS_EVENTS_CLIENT` token to inject the `EventsClient` instance:
 
 ```ts
 import { Inject, Injectable } from '@nestjs/common';
