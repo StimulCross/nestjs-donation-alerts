@@ -58,6 +58,5 @@
 		"README.md",
 		"lib",
 		"!lib/**/*.d.ts.map"
-	],
-	"gitHead": "f26a502ad0cd366303ac1819022cbb355316009b"
+	]
 }
