@@ -21,12 +21,12 @@ export class DonationAlertsAuthModule {
 	 * @param options Donation Alerts auth module options.
 	 */
 	public static register(options: DonationAlertsAuthModuleOptions): DynamicModule {
-		const authProvider = DonationAlertsAuthModule._createAuthProvider();
+		const authProvider = this._createAuthProvider();
 
 		return {
-			module: DonationAlertsAuthModule,
+			module: this,
 			global: options.isGlobal,
-			providers: [DonationAlertsAuthModule._createOptionsProvider(options), authProvider],
+			providers: [this._createOptionsProvider(options), authProvider],
 			exports: [authProvider]
 		};
 	}
@@ -38,13 +38,13 @@ export class DonationAlertsAuthModule {
 	 * @param options Donation Alerts auth module async options.
 	 */
 	public static registerAsync(options: DonationAlertsAuthModuleAsyncOptions): DynamicModule {
-		const authProvider = DonationAlertsAuthModule._createAuthProvider();
+		const authProvider = this._createAuthProvider();
 
 		return {
-			module: DonationAlertsAuthModule,
+			module: this,
 			global: options.isGlobal,
 			imports: options.imports,
-			providers: [...DonationAlertsAuthModule._createAsyncOptionsProviders(options), authProvider],
+			providers: [...this._createAsyncOptionsProviders(options), authProvider],
 			exports: [authProvider]
 		};
 	}
@@ -58,11 +58,11 @@ export class DonationAlertsAuthModule {
 
 	private static _createAsyncOptionsProviders(options: DonationAlertsAuthModuleAsyncOptions): Provider[] {
 		if (options.useExisting || options.useFactory) {
-			return [DonationAlertsAuthModule._createAsyncOptionsProvider(options)];
+			return [this._createAsyncOptionsProvider(options)];
 		}
 
 		return [
-			DonationAlertsAuthModule._createAsyncOptionsProvider(options),
+			this._createAsyncOptionsProvider(options),
 			{
 				provide: options.useClass!,
 				useClass: options.useClass!
@@ -114,8 +114,7 @@ export class DonationAlertsAuthModule {
 		return {
 			provide: DONATION_ALERTS_AUTH_PROVIDER,
 			inject: [DONATION_ALERTS_AUTH_OPTIONS],
-			useFactory: (options: DonationAlertsAuthOptions) =>
-				DonationAlertsAuthModule._createAuthProviderClient(options)
+			useFactory: (options: DonationAlertsAuthOptions) => this._createAuthProviderClient(options)
 		};
 	}
 }

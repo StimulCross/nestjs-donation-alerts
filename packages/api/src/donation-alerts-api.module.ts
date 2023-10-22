@@ -16,17 +16,17 @@ import {
 @Module({})
 export class DonationAlertsApiModule {
 	/**
-	 * Registers the module synchronously by direct options passing.
+	 * Registers the module synchronously by passing options directly.
 	 *
 	 * @param options Donation Alerts API module options.
 	 */
 	public static register(options: DonationAlertsApiModuleOptions): DynamicModule {
-		const apiClient = DonationAlertsApiModule._createApiClientProvider();
+		const apiClient = this._createApiClientProvider();
 
 		return {
 			global: options.isGlobal,
-			module: DonationAlertsApiModule,
-			providers: [DonationAlertsApiModule._createOptionsProvider(options), apiClient],
+			module: this,
+			providers: [this._createOptionsProvider(options), apiClient],
 			exports: [apiClient]
 		};
 	}
@@ -38,13 +38,13 @@ export class DonationAlertsApiModule {
 	 * @param options Donation Alerts API module async options.
 	 */
 	public static registerAsync(options: DonationAlertsApiModuleAsyncOptions): DynamicModule {
-		const apiClient = DonationAlertsApiModule._createApiClientProvider();
+		const apiClient = this._createApiClientProvider();
 
 		return {
 			global: options.isGlobal,
-			module: DonationAlertsApiModule,
+			module: this,
 			imports: options.imports,
-			providers: [...DonationAlertsApiModule._createAsyncOptionsProviders(options), apiClient],
+			providers: [...this._createAsyncOptionsProviders(options), apiClient],
 			exports: [apiClient]
 		};
 	}
@@ -58,11 +58,11 @@ export class DonationAlertsApiModule {
 
 	private static _createAsyncOptionsProviders(options: DonationAlertsApiModuleAsyncOptions): Provider[] {
 		if (options.useExisting || options.useFactory) {
-			return [DonationAlertsApiModule._createAsyncOptionsProvider(options)];
+			return [this._createAsyncOptionsProvider(options)];
 		}
 
 		return [
-			DonationAlertsApiModule._createAsyncOptionsProvider(options),
+			this._createAsyncOptionsProvider(options),
 			{
 				provide: options.useClass!,
 				useClass: options.useClass!
