@@ -8,8 +8,18 @@ import {
 	type DonationAlertsAuthOptionsFactory
 } from './interfaces';
 
+/**
+ * Donation Alerts auth module.
+ *
+ * The module must be registered using either `register` or `registerAsync` static methods.
+ */
 @Module({})
 export class DonationAlertsAuthModule {
+	/**
+	 * Registers the module synchronously by passing options directly.
+	 *
+	 * @param options Donation Alerts auth module options.
+	 */
 	public static register(options: DonationAlertsAuthModuleOptions): DynamicModule {
 		const authProvider = DonationAlertsAuthModule._createAuthProvider();
 
@@ -21,6 +31,12 @@ export class DonationAlertsAuthModule {
 		};
 	}
 
+	/**
+	 * Registers the module asynchronously using one of the following factories: `useFactory`, `useExisting`, or
+	 * `useClass`.
+	 *
+	 * @param options Donation Alerts auth module async options.
+	 */
 	public static registerAsync(options: DonationAlertsAuthModuleAsyncOptions): DynamicModule {
 		const authProvider = DonationAlertsAuthModule._createAuthProvider();
 
