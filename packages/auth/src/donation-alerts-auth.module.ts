@@ -57,7 +57,7 @@ export class DonationAlertsAuthModule {
 	}
 
 	private static _createAsyncOptionsProviders(options: DonationAlertsAuthModuleAsyncOptions): Provider[] {
-		if (options.useExisting || options.useFactory) {
+		if (options.useExisting ?? options.useFactory) {
 			return [this._createAsyncOptionsProvider(options)];
 		}
 

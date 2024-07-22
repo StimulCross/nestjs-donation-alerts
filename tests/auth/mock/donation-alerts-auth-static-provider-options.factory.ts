@@ -4,7 +4,7 @@ import { MOCK_CLIENT_ID, MOCK_SCOPES } from '../../constants';
 
 @Injectable()
 export class DonationAlertsAuthStaticProviderOptionsFactory implements DonationAlertsAuthOptionsFactory {
-	async createDonationAlertsAuthOptions(): Promise<DonationAlertsAuthOptions> {
+	createDonationAlertsAuthOptions(): DonationAlertsAuthOptions {
 		return {
 			type: 'static',
 			clientId: MOCK_CLIENT_ID,

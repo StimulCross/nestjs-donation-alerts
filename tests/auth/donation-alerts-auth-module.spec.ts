@@ -177,7 +177,7 @@ describe('Donation Alerts auth module test suite', () => {
 
 		describe('Auth provider should be resolved with "useFactory" option', () => {
 			const staticAuthModule = DonationAlertsAuthModule.registerAsync({
-				useFactory: async () => {
+				useFactory: () => {
 					return {
 						type: 'static',
 						clientId: MOCK_CLIENT_ID,
@@ -189,7 +189,7 @@ describe('Donation Alerts auth module test suite', () => {
 			testStaticAuthProvider(staticAuthModule);
 
 			const refreshingAuthModule = DonationAlertsAuthModule.registerAsync({
-				useFactory: async () => {
+				useFactory: () => {
 					return {
 						type: 'refreshing',
 						clientId: MOCK_CLIENT_ID,
@@ -201,9 +201,9 @@ describe('Donation Alerts auth module test suite', () => {
 			testRefreshingAuthProvider(refreshingAuthModule);
 
 			test('imports should be injected to "useFactory" function', async () => {
-				const useFactory = async (
+				const useFactory = (
 					factory: DonationAlertsAuthStaticProviderOptionsFactory
-				): Promise<DonationAlertsAuthOptions> => {
+				): DonationAlertsAuthOptions => {
 					expect(factory).toBeInstanceOf(DonationAlertsAuthStaticProviderOptionsFactory);
 
 					return {

@@ -10,10 +10,10 @@ import { MOCK_CLIENT_ID, MOCK_SCOPES } from '../../constants';
 @Injectable()
 export class DonationAlertsEventsClientOptionsFactory implements DonationAlertsEventsOptionsFactory {
 	async createDonationAlertsEventsOptions(): Promise<DonationAlertsEventsOptions> {
-		return {
+		return await Promise.resolve({
 			apiClient: new ApiClient({
 				authProvider: new StaticAuthProvider(MOCK_CLIENT_ID, MOCK_SCOPES)
 			})
-		};
+		});
 	}
 }
