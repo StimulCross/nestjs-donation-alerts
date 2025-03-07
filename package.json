@@ -21,7 +21,9 @@
 		"test:verbose": "jest --config jest.config.js --runInBand --verbose --detectOpenHandles --forceExit",
 		"test:cov": "jest --config jest.config.js --runInBand --coverage --detectOpenHandles --forceExit",
 		"test:cov:verbose": "jest --config jest.config.js --runInBand --coverage --verbose --detectOpenHandles --forceExit",
-		"prepare": "husky"
+		"prepare": "husky",
+		"preversion": "lerna run build && yarn run format:check && yarn run lint",
+		"prepublishOnly": "lerna run build && yarn run format:check && yarn run lint"
 	},
 	"engines": {
 		"node": ">=20"
