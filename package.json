@@ -3,7 +3,7 @@
 	"workspaces": [
 		"packages/*"
 	],
-	"version": "0.0.1",
+	"version": "0.2.0",
 	"description": "A set of NestJS wrappers for @donation-alerts packages",
 	"repository": "https://github.com/StimulCross/nestjs-donation-alerts.git",
 	"author": "Stimul Cross <stimulcross@gmail.com>",
