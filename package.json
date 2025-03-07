@@ -28,9 +28,9 @@
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.7.1",
-		"@donation-alerts/api": "^3.0.1",
-		"@donation-alerts/auth": "^3.0.1",
-		"@donation-alerts/events": "^3.0.1",
+		"@donation-alerts/api": "^4.0.0",
+		"@donation-alerts/auth": "^4.0.0",
+		"@donation-alerts/events": "^4.0.0",
 		"@nestjs/common": "^11.0.11",
 		"@nestjs/core": "^11.0.11",
 		"@nestjs/platform-express": "^11.0.11",

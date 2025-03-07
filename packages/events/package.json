@@ -37,16 +37,16 @@
 		"test:verbose": "jest --config \"../../jest.config.js\" --selectProjects auth --verbose --runInBand"
 	},
 	"peerDependencies": {
-		"@donation-alerts/api": "^3",
-		"@donation-alerts/events": "^3",
+		"@donation-alerts/api": "^4",
+		"@donation-alerts/events": "^4",
 		"@nestjs/common": "*",
 		"@nestjs/core": "*",
 		"reflect-metadata": "^0.2.2",
 		"rxjs": "*"
 	},
 	"devDependencies": {
-		"@donation-alerts/api": "^3.0.1",
-		"@donation-alerts/events": "^3.0.1",
+		"@donation-alerts/api": "^4.0.0",
+		"@donation-alerts/events": "^4.0.0",
 		"@nestjs/common": "^11.0.11",
 		"@nestjs/core": "^11.0.11",
 		"reflect-metadata": "^0.2.2",

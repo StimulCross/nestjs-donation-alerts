@@ -30,10 +30,7 @@ const testStaticAuthProvider = (donationAlertsAuthModule: DynamicModule | Promis
 
 			app = testingModule.createNestApplication();
 			staticAuthProviderTestingService = app.get(StaticAuthProviderTestingService);
-			staticAuthProviderTestingService.authProvider.addUser(MOCK_USER_ID, {
-				accessToken: MOCK_ACCESS_TOKEN,
-				scopes: MOCK_SCOPES,
-			});
+			staticAuthProviderTestingService.authProvider.addUser(MOCK_USER_ID, MOCK_ACCESS_TOKEN, MOCK_SCOPES);
 
 			await app.init();
 		});
