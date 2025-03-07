@@ -5,7 +5,7 @@ import {
 	type DonationAlertsAuthModuleAsyncOptions,
 	type DonationAlertsAuthModuleOptions,
 	type DonationAlertsAuthOptions,
-	type DonationAlertsAuthOptionsFactory
+	type DonationAlertsAuthOptionsFactory,
 } from './interfaces';
 
 /**
@@ -27,7 +27,7 @@ export class DonationAlertsAuthModule {
 			module: this,
 			global: options.isGlobal,
 			providers: [this._createOptionsProvider(options), authProvider],
-			exports: [authProvider]
+			exports: [authProvider],
 		};
 	}
 
@@ -45,14 +45,14 @@ export class DonationAlertsAuthModule {
 			global: options.isGlobal,
 			imports: options.imports,
 			providers: [...this._createAsyncOptionsProviders(options), authProvider],
-			exports: [authProvider]
+			exports: [authProvider],
 		};
 	}
 
 	private static _createOptionsProvider(options: DonationAlertsAuthOptions): Provider<DonationAlertsAuthOptions> {
 		return {
 			provide: DONATION_ALERTS_AUTH_OPTIONS,
-			useValue: options
+			useValue: options,
 		};
 	}
 
@@ -65,19 +65,19 @@ export class DonationAlertsAuthModule {
 			this._createAsyncOptionsProvider(options),
 			{
 				provide: options.useClass!,
-				useClass: options.useClass!
-			}
+				useClass: options.useClass!,
+			},
 		];
 	}
 
 	private static _createAsyncOptionsProvider(
-		options: DonationAlertsAuthModuleAsyncOptions
+		options: DonationAlertsAuthModuleAsyncOptions,
 	): Provider<DonationAlertsAuthOptions> {
 		if (options.useFactory) {
 			return {
 				provide: DONATION_ALERTS_AUTH_OPTIONS,
 				useFactory: options.useFactory,
-				inject: options.inject ?? []
+				inject: options.inject ?? [],
 			};
 		}
 
@@ -85,28 +85,30 @@ export class DonationAlertsAuthModule {
 			provide: DONATION_ALERTS_AUTH_OPTIONS,
 			useFactory: async (factory: DonationAlertsAuthOptionsFactory) =>
 				await factory.createDonationAlertsAuthOptions(),
-			inject: [options.useExisting ?? options.useClass!]
+			inject: [options.useExisting ?? options.useClass!],
 		};
 	}
 
 	private static _createAuthProviderClient(options: DonationAlertsAuthOptions): AuthProvider {
 		switch (options.type) {
-			case 'refreshing':
+			case 'refreshing': {
 				return new RefreshingAuthProvider({
 					clientId: options.clientId,
 					clientSecret: options.clientSecret,
 					redirectUri: options.redirectUri,
-					scopes: options.scopes
+					scopes: options.scopes,
 				});
+			}
 
 			case 'static': {
 				return new StaticAuthProvider(options.clientId, options.scopes);
 			}
 
-			default:
+			default: {
 				throw new Error(
-					'Invalid auth provider type. The provider type must be "app", "refreshing", or "static".'
+					'Invalid auth provider type. The provider type must be "app", "refreshing", or "static".',
 				);
+			}
 		}
 	}
 
@@ -114,7 +116,7 @@ export class DonationAlertsAuthModule {
 		return {
 			provide: DONATION_ALERTS_AUTH_PROVIDER,
 			inject: [DONATION_ALERTS_AUTH_OPTIONS],
-			useFactory: (options: DonationAlertsAuthOptions) => this._createAuthProviderClient(options)
+			useFactory: (options: DonationAlertsAuthOptions) => this._createAuthProviderClient(options),
 		};
 	}
 }

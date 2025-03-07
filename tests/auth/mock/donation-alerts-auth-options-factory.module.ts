@@ -4,6 +4,6 @@ import { DonationAlertsAuthStaticProviderOptionsFactory } from './donation-alert
 
 @Module({
 	providers: [DonationAlertsAuthStaticProviderOptionsFactory, DonationAlertsAuthRefreshingProviderOptionsFactory],
-	exports: [DonationAlertsAuthStaticProviderOptionsFactory, DonationAlertsAuthRefreshingProviderOptionsFactory]
+	exports: [DonationAlertsAuthStaticProviderOptionsFactory, DonationAlertsAuthRefreshingProviderOptionsFactory],
 })
 export class DonationAlertsAuthOptionsFactoryModule {}

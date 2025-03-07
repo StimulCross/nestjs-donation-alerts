@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { exec as _exec, spawn } from 'child_process';
-import util from 'util';
+import { exec as _exec, spawn } from 'node:child_process';
+import util from 'node:util';
 
 const exec = util.promisify(_exec);
 
@@ -13,7 +13,7 @@ async function runYarn(args) {
 async function runAndPassOutput(cmd, args) {
 	return new Promise(resolve => {
 		const proc = spawn(cmd, args, {
-			stdio: 'inherit'
+			stdio: 'inherit',
 		});
 		proc.on('exit', code => {
 			if (code) {
@@ -53,7 +53,7 @@ await runYarn([
 	'pre',
 	versionType,
 	'-m',
-	'chore: release version %v'
+	'chore: release version %v',
 ]);
 
 if (versionType.startsWith('pre')) {

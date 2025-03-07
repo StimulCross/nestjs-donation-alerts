@@ -5,7 +5,7 @@ import {
 	type DonationAlertsApiModuleAsyncOptions,
 	type DonationAlertsApiModuleOptions,
 	type DonationAlertsApiOptions,
-	type DonationAlertsApiOptionsFactory
+	type DonationAlertsApiOptionsFactory,
 } from './interfaces';
 
 /**
@@ -27,7 +27,7 @@ export class DonationAlertsApiModule {
 			global: options.isGlobal,
 			module: this,
 			providers: [this._createOptionsProvider(options), apiClient],
-			exports: [apiClient]
+			exports: [apiClient],
 		};
 	}
 
@@ -45,14 +45,14 @@ export class DonationAlertsApiModule {
 			module: this,
 			imports: options.imports,
 			providers: [...this._createAsyncOptionsProviders(options), apiClient],
-			exports: [apiClient]
+			exports: [apiClient],
 		};
 	}
 
 	private static _createOptionsProvider(options: DonationAlertsApiOptions): Provider<DonationAlertsApiOptions> {
 		return {
 			provide: DONATION_ALERTS_API_OPTIONS,
-			useValue: options
+			useValue: options,
 		};
 	}
 
@@ -65,19 +65,19 @@ export class DonationAlertsApiModule {
 			this._createAsyncOptionsProvider(options),
 			{
 				provide: options.useClass!,
-				useClass: options.useClass!
-			}
+				useClass: options.useClass!,
+			},
 		];
 	}
 
 	private static _createAsyncOptionsProvider(
-		options: DonationAlertsApiModuleAsyncOptions
+		options: DonationAlertsApiModuleAsyncOptions,
 	): Provider<DonationAlertsApiOptions> {
 		if (options.useFactory) {
 			return {
 				provide: DONATION_ALERTS_API_OPTIONS,
 				inject: options.inject ?? [],
-				useFactory: options.useFactory
+				useFactory: options.useFactory,
 			};
 		}
 
@@ -85,7 +85,7 @@ export class DonationAlertsApiModule {
 			provide: DONATION_ALERTS_API_OPTIONS,
 			inject: [options.useExisting ?? options.useClass!],
 			useFactory: async (factory: DonationAlertsApiOptionsFactory) =>
-				await factory.createDonationAlertsApiOptions()
+				await factory.createDonationAlertsApiOptions(),
 		};
 	}
 
@@ -93,7 +93,7 @@ export class DonationAlertsApiModule {
 		return {
 			provide: DONATION_ALERTS_API_CLIENT,
 			inject: [DONATION_ALERTS_API_OPTIONS],
-			useFactory: (options: DonationAlertsApiOptions) => new ApiClient(options)
+			useFactory: (options: DonationAlertsApiOptions) => new ApiClient(options),
 		};
 	}
 }

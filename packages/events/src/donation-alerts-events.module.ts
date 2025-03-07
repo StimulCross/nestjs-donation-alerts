@@ -2,13 +2,13 @@ import { EventsClient } from '@donation-alerts/events';
 import { type DynamicModule, Module, type Provider } from '@nestjs/common';
 import {
 	DONATION_ALERTS_EVENTS_CLIENT,
-	DONATION_ALERTS_EVENTS_CLIENT_OPTIONS
+	DONATION_ALERTS_EVENTS_CLIENT_OPTIONS,
 } from './donation-alerts-events.constants';
 import {
 	type DonationAlertsEventsModuleAsyncOptions,
 	type DonationAlertsEventsModuleOptions,
 	type DonationAlertsEventsOptions,
-	type DonationAlertsEventsOptionsFactory
+	type DonationAlertsEventsOptionsFactory,
 } from './interfaces';
 
 /**
@@ -30,7 +30,7 @@ export class DonationAlertsEventsModule {
 			global: options.isGlobal,
 			module: this,
 			providers: [this._createOptionsProvider(options), eventsClient],
-			exports: [eventsClient]
+			exports: [eventsClient],
 		};
 	}
 
@@ -48,14 +48,14 @@ export class DonationAlertsEventsModule {
 			module: this,
 			imports: options.imports,
 			providers: [...this._createAsyncOptionsProviders(options), eventsClient],
-			exports: [eventsClient]
+			exports: [eventsClient],
 		};
 	}
 
 	private static _createOptionsProvider(options: DonationAlertsEventsOptions): Provider<DonationAlertsEventsOptions> {
 		return {
 			provide: DONATION_ALERTS_EVENTS_CLIENT_OPTIONS,
-			useValue: options
+			useValue: options,
 		};
 	}
 
@@ -68,19 +68,19 @@ export class DonationAlertsEventsModule {
 			this._createAsyncOptionsProvider(options),
 			{
 				provide: options.useClass!,
-				useClass: options.useClass!
-			}
+				useClass: options.useClass!,
+			},
 		];
 	}
 
 	private static _createAsyncOptionsProvider(
-		options: DonationAlertsEventsModuleAsyncOptions
+		options: DonationAlertsEventsModuleAsyncOptions,
 	): Provider<DonationAlertsEventsOptions> {
 		if (options.useFactory) {
 			return {
 				provide: DONATION_ALERTS_EVENTS_CLIENT_OPTIONS,
 				inject: options.inject ?? [],
-				useFactory: options.useFactory
+				useFactory: options.useFactory,
 			};
 		}
 
@@ -88,7 +88,7 @@ export class DonationAlertsEventsModule {
 			provide: DONATION_ALERTS_EVENTS_CLIENT_OPTIONS,
 			inject: [options.useExisting ?? options.useClass!],
 			useFactory: async (factory: DonationAlertsEventsOptionsFactory) =>
-				await factory.createDonationAlertsEventsOptions()
+				await factory.createDonationAlertsEventsOptions(),
 		};
 	}
 
@@ -96,7 +96,7 @@ export class DonationAlertsEventsModule {
 		return {
 			provide: DONATION_ALERTS_EVENTS_CLIENT,
 			inject: [DONATION_ALERTS_EVENTS_CLIENT_OPTIONS],
-			useFactory: (options: DonationAlertsEventsOptions) => new EventsClient(options)
+			useFactory: (options: DonationAlertsEventsOptions) => new EventsClient(options),
 		};
 	}
 }

@@ -3,6 +3,6 @@ import { DonationAlertsEventsClientOptionsFactory } from './donation-alerts-even
 
 @Module({
 	providers: [DonationAlertsEventsClientOptionsFactory],
-	exports: [DonationAlertsEventsClientOptionsFactory]
+	exports: [DonationAlertsEventsClientOptionsFactory],
 })
 export class DonationAlertsEventsClientOptionsFactoryModule {}

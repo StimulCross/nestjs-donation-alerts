@@ -11,11 +11,11 @@ Each module is a standalone package, so you can use it independently depending o
 
 Read the documentation for individual packages for details.
 
--   [@nestjs-donation-alerts/auth](https://github.com/stimulcross/nestjs-donation-alerts/tree/main/packages/auth) - wraps [@donation-alerts/auth](https://github.com/StimulCross/donation-alerts/tree/main/packages/auth)
+- [@nestjs-donation-alerts/auth](https://github.com/stimulcross/nestjs-donation-alerts/tree/main/packages/auth) - wraps [@donation-alerts/auth](https://github.com/StimulCross/donation-alerts/tree/main/packages/auth)
 
--   [@nestjs-donation-alerts/api](https://github.com/stimulcross/nestjs-donation-alerts/tree/main/packages/api) - wraps [@donation-alerts/api](https://github.com/StimulCross/donation-alerts/tree/main/packages/api)
+- [@nestjs-donation-alerts/api](https://github.com/stimulcross/nestjs-donation-alerts/tree/main/packages/api) - wraps [@donation-alerts/api](https://github.com/StimulCross/donation-alerts/tree/main/packages/api)
 
--   [@nestjs-donation-alerts/events](https://github.com/stimulcross/nestjs-donation-alerts/tree/main/packages/events) - wraps [@donation-alerts/events](https://github.com/StimulCross/donation-alerts/tree/main/packages/events)
+- [@nestjs-donation-alerts/events](https://github.com/stimulcross/nestjs-donation-alerts/tree/main/packages/events) - wraps [@donation-alerts/events](https://github.com/StimulCross/donation-alerts/tree/main/packages/events)
 
 ## General Usage
 
@@ -34,9 +34,9 @@ import { DonationAlertsApiModule } from '@nestjs-donation-alerts/api';
 	imports: [
 		DonationAlertsApiModule.register({
 			isGlobal: true,
-			authProvider: new StaticAuthProvider('<CLIENT_ID>')
-		})
-	]
+			authProvider: new StaticAuthProvider('<CLIENT_ID>'),
+		}),
+	],
 })
 export class AppModule {}
 ```
@@ -67,9 +67,9 @@ import { DonationAlertsApiModule } from '@nestjs-donation-alerts/api';
 					type: 'refreshing',
 					clientId: configService.get('DA_CLIENT_ID'),
 					clientSecret: configService.get('DA_CLIENT_SECRET'),
-					scopes: configService.get('DA_SCOPES')
+					scopes: configService.get('DA_SCOPES'),
 				};
-			}
+			},
 		}),
 		DonationAlertsApiModule.registerAsync({
 			isGlobal: true,
@@ -80,9 +80,9 @@ import { DonationAlertsApiModule } from '@nestjs-donation-alerts/api';
 				// Here we are able to access the auth provider instance
 				// from the module above
 				return { authProvider };
-			}
-		})
-	]
+			},
+		}),
+	],
 })
 export class AppModule {}
 ```
@@ -115,7 +115,7 @@ export class DaAuthOptionsFactory implements DonationAlertsAuthOptionsFactory {
 			type: 'refreshing',
 			clientId: this._configService.get('DA_CLIENT_ID'),
 			clientSecret: this._configService.get('DA_CLIENT_SECRET'),
-			scopes: this._configService.get('DA_SCOPES')
+			scopes: this._configService.get('DA_SCOPES'),
 		};
 	}
 }
@@ -129,7 +129,7 @@ import { Global, Module } from '@nestjs/common';
 @Global()
 @Module({
 	providers: [DaAuthOptionsFactory],
-	exports: [DaAuthOptionsFactory]
+	exports: [DaAuthOptionsFactory],
 })
 export class DaAuthOptionsFactoryModule {}
 ```
@@ -145,9 +145,9 @@ import { DonationAlertsAuthModule } from '@nestjs-donation-alerts/auth';
 		DaAuthOptionsFactoryModule,
 		DonationAlertsAuthModule.registerAsync({
 			isGlobal: true,
-			useClass: DaAuthOptionsFactory
-		})
-	]
+			useClass: DaAuthOptionsFactory,
+		}),
+	],
 })
 export class AppModule {}
 ```
@@ -171,17 +171,17 @@ import { DONATION_ALERTS_AUTH_PROVIDER, DonationAlertsAuthModule } from '@nestjs
 				DonationAlertsAuthModule.register({
 					type: 'static',
 					clientId: '<CLIENT_ID>',
-					scopes: ['oauth-user-show', 'oauth-donation-index', 'oauth-custom_alert-store']
-				})
+					scopes: ['oauth-user-show', 'oauth-donation-index', 'oauth-custom_alert-store'],
+				}),
 			],
 			inject: [DONATION_ALERTS_AUTH_PROVIDER],
 			useFactory: (authProvider: StaticAuthProvider) => {
 				return { authProvider };
-			}
-		})
+			},
+		}),
 	],
 	providers: [CustomProvider],
-	exports: [CustomProvider]
+	exports: [CustomProvider],
 })
 export class CustomModule {}
 ```

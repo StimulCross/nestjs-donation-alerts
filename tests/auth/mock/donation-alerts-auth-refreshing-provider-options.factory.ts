@@ -8,7 +8,7 @@ export class DonationAlertsAuthRefreshingProviderOptionsFactory implements Donat
 		return {
 			type: 'refreshing',
 			clientId: MOCK_CLIENT_ID,
-			clientSecret: MOCK_CLIENT_SECRET
+			clientSecret: MOCK_CLIENT_SECRET,
 		};
 	}
 }

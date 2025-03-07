@@ -3,5 +3,5 @@ export { type DonationAlertsEventsOptionsFactory } from './donation-alerts-event
 export {
 	type DonationAlertsEventsModuleExtraOptions,
 	type DonationAlertsEventsModuleOptions,
-	type DonationAlertsEventsModuleAsyncOptions
+	type DonationAlertsEventsModuleAsyncOptions,
 } from './donation-alerts-events-module-options.interface';

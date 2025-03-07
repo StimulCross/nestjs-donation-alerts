@@ -3,5 +3,5 @@ export { type DonationAlertsApiOptionsFactory } from './donation-alerts-api-opti
 export {
 	type DonationAlertsApiModuleExtraOptions,
 	type DonationAlertsApiModuleOptions,
-	type DonationAlertsApiModuleAsyncOptions
+	type DonationAlertsApiModuleAsyncOptions,
 } from './donation-alerts-api-module-options.interface';

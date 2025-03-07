@@ -13,15 +13,15 @@ import { MOCK_CLIENT_ID, MOCK_SCOPES } from '../constants';
 
 const createApiClient = (): ApiClient =>
 	new ApiClient({
-		authProvider: new StaticAuthProvider(MOCK_CLIENT_ID, MOCK_SCOPES)
+		authProvider: new StaticAuthProvider(MOCK_CLIENT_ID, MOCK_SCOPES),
 	});
 
 const createTestApp = async (imports: ModuleMetadata['imports']): Promise<INestApplication> => {
-	const TestingModule = await Test.createTestingModule({
+	const testingModule = await Test.createTestingModule({
 		imports,
-		providers: [EventsClientTestingService]
+		providers: [EventsClientTestingService],
 	}).compile();
-	return TestingModule.createNestApplication();
+	return testingModule.createNestApplication();
 };
 
 const testEventsClient = (eventsClient: EventsClient): void => {
@@ -34,8 +34,8 @@ describe('Donation Alerts events module test suite', () => {
 		test('should register the module', async () => {
 			const app = await createTestApp([
 				DonationAlertsEventsModule.register({
-					apiClient: createApiClient()
-				})
+					apiClient: createApiClient(),
+				}),
 			]);
 
 			const eventsClientTestingService = app.get(EventsClientTestingService);
@@ -50,8 +50,8 @@ describe('Donation Alerts events module test suite', () => {
 			const app = await createTestApp([
 				DonationAlertsEventsModule.registerAsync({
 					imports: [DonationAlertsEventsClientOptionsFactoryModule],
-					useExisting: DonationAlertsEventsClientOptionsFactory
-				})
+					useExisting: DonationAlertsEventsClientOptionsFactory,
+				}),
 			]);
 
 			const eventsClientTestingService = app.get(EventsClientTestingService);
@@ -64,8 +64,8 @@ describe('Donation Alerts events module test suite', () => {
 			const app = await createTestApp([
 				DonationAlertsEventsModule.registerAsync({
 					imports: [DonationAlertsEventsClientOptionsFactoryModule],
-					useClass: DonationAlertsEventsClientOptionsFactory
-				})
+					useClass: DonationAlertsEventsClientOptionsFactory,
+				}),
 			]);
 
 			const eventsClientTestingService = app.get(EventsClientTestingService);
@@ -77,10 +77,8 @@ describe('Donation Alerts events module test suite', () => {
 		test('should register the module with "useFactory" function', async () => {
 			const app = await createTestApp([
 				DonationAlertsEventsModule.registerAsync({
-					useFactory: () => {
-						return { apiClient: createApiClient() };
-					}
-				})
+					useFactory: () => ({ apiClient: createApiClient() }),
+				}),
 			]);
 
 			const eventsClientTestingService = app.get(EventsClientTestingService);
@@ -93,7 +91,7 @@ describe('Donation Alerts events module test suite', () => {
 			const useFactory = (factory: DonationAlertsEventsClientOptionsFactory): DonationAlertsEventsOptions => {
 				expect(factory).toBeInstanceOf(DonationAlertsEventsClientOptionsFactory);
 				return {
-					apiClient: createApiClient()
+					apiClient: createApiClient(),
 				};
 			};
 
@@ -101,8 +99,8 @@ describe('Donation Alerts events module test suite', () => {
 				DonationAlertsEventsModule.registerAsync({
 					imports: [DonationAlertsEventsClientOptionsFactoryModule],
 					inject: [DonationAlertsEventsClientOptionsFactory],
-					useFactory
-				})
+					useFactory,
+				}),
 			]);
 
 			const eventsClientTestingService = app.get(EventsClientTestingService);
@@ -120,20 +118,16 @@ describe('Donation Alerts events module test suite', () => {
 								DonationAlertsAuthModule.register({
 									type: 'static',
 									clientId: MOCK_CLIENT_ID,
-									scopes: MOCK_SCOPES
-								})
+									scopes: MOCK_SCOPES,
+								}),
 							],
 							inject: [DONATION_ALERTS_AUTH_PROVIDER],
-							useFactory: (authProvider: AuthProvider) => {
-								return { authProvider };
-							}
-						})
+							useFactory: (authProvider: AuthProvider) => ({ authProvider }),
+						}),
 					],
 					inject: [DONATION_ALERTS_API_CLIENT],
-					useFactory: (apiClient: ApiClient) => {
-						return { apiClient };
-					}
-				})
+					useFactory: (apiClient: ApiClient) => ({ apiClient }),
+				}),
 			]);
 
 			const eventsClientTestingService = app.get(EventsClientTestingService);
@@ -148,22 +142,18 @@ describe('Donation Alerts events module test suite', () => {
 					isGlobal: true,
 					type: 'static',
 					clientId: MOCK_CLIENT_ID,
-					scopes: MOCK_SCOPES
+					scopes: MOCK_SCOPES,
 				}),
 				DonationAlertsApiModule.registerAsync({
 					isGlobal: true,
 					inject: [DONATION_ALERTS_AUTH_PROVIDER],
-					useFactory: (authProvider: AuthProvider) => {
-						return { authProvider };
-					}
+					useFactory: (authProvider: AuthProvider) => ({ authProvider }),
 				}),
 				DonationAlertsEventsModule.registerAsync({
 					isGlobal: true,
 					inject: [DONATION_ALERTS_API_CLIENT],
-					useFactory: (apiClient: ApiClient) => {
-						return { apiClient };
-					}
-				})
+					useFactory: (apiClient: ApiClient) => ({ apiClient }),
+				}),
 			]);
 
 			const eventsClientTestingService = app.get(EventsClientTestingService);

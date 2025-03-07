@@ -8,7 +8,7 @@ export class DonationAlertsAuthStaticProviderOptionsFactory implements DonationA
 		return {
 			type: 'static',
 			clientId: MOCK_CLIENT_ID,
-			scopes: MOCK_SCOPES
+			scopes: MOCK_SCOPES,
 		};
 	}
 }

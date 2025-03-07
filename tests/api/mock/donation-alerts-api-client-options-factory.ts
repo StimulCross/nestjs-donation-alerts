@@ -7,7 +7,7 @@ import { MOCK_CLIENT_ID, MOCK_SCOPES } from '../../constants';
 export class DonationAlertsApiClientOptionsFactory implements DonationAlertsApiOptionsFactory {
 	async createDonationAlertsApiOptions(): Promise<DonationAlertsApiOptions> {
 		return await Promise.resolve({
-			authProvider: new StaticAuthProvider(MOCK_CLIENT_ID, MOCK_SCOPES)
+			authProvider: new StaticAuthProvider(MOCK_CLIENT_ID, MOCK_SCOPES),
 		});
 	}
 }

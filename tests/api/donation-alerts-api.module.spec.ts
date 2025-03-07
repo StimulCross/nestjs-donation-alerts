@@ -10,8 +10,8 @@ import { DONATION_ALERTS_AUTH_PROVIDER, DonationAlertsAuthModule } from '../../p
 import { MOCK_CLIENT_ID, MOCK_SCOPES } from '../constants';
 
 const createTestApp = async (imports: ModuleMetadata['imports']): Promise<INestApplication> => {
-	const TestingModule = await Test.createTestingModule({ imports, providers: [ApiClientTestingService] }).compile();
-	return TestingModule.createNestApplication();
+	const testingModule = await Test.createTestingModule({ imports, providers: [ApiClientTestingService] }).compile();
+	return testingModule.createNestApplication();
 };
 
 const testApiClient = (apiClient: ApiClient): void => {
@@ -24,8 +24,8 @@ describe('Donation Alerts API module test suite', () => {
 		test('should register the module', async () => {
 			const app = await createTestApp([
 				DonationAlertsApiModule.register({
-					authProvider: new StaticAuthProvider(MOCK_CLIENT_ID, MOCK_SCOPES)
-				})
+					authProvider: new StaticAuthProvider(MOCK_CLIENT_ID, MOCK_SCOPES),
+				}),
 			]);
 
 			const apiClientTestingService = app.get(ApiClientTestingService);
@@ -40,8 +40,8 @@ describe('Donation Alerts API module test suite', () => {
 			const app = await createTestApp([
 				DonationAlertsApiModule.registerAsync({
 					imports: [DonationAlertsApiClientOptionsFactoryModule],
-					useExisting: DonationAlertsApiClientOptionsFactory
-				})
+					useExisting: DonationAlertsApiClientOptionsFactory,
+				}),
 			]);
 
 			const apiClientTestingService = app.get(ApiClientTestingService);
@@ -54,8 +54,8 @@ describe('Donation Alerts API module test suite', () => {
 			const app = await createTestApp([
 				DonationAlertsApiModule.registerAsync({
 					imports: [DonationAlertsApiClientOptionsFactoryModule],
-					useClass: DonationAlertsApiClientOptionsFactory
-				})
+					useClass: DonationAlertsApiClientOptionsFactory,
+				}),
 			]);
 
 			const apiClientTestingService = app.get(ApiClientTestingService);
@@ -67,10 +67,8 @@ describe('Donation Alerts API module test suite', () => {
 		test('should register the module with "useFactory" function', async () => {
 			const app = await createTestApp([
 				DonationAlertsApiModule.registerAsync({
-					useFactory: () => {
-						return { authProvider: new StaticAuthProvider(MOCK_CLIENT_ID, MOCK_SCOPES) };
-					}
-				})
+					useFactory: () => ({ authProvider: new StaticAuthProvider(MOCK_CLIENT_ID, MOCK_SCOPES) }),
+				}),
 			]);
 
 			const apiClientTestingService = app.get(ApiClientTestingService);
@@ -89,8 +87,8 @@ describe('Donation Alerts API module test suite', () => {
 				DonationAlertsApiModule.registerAsync({
 					imports: [DonationAlertsApiClientOptionsFactoryModule],
 					inject: [DonationAlertsApiClientOptionsFactory],
-					useFactory
-				})
+					useFactory,
+				}),
 			]);
 
 			const apiClientTestingService = app.get(ApiClientTestingService);
@@ -106,14 +104,12 @@ describe('Donation Alerts API module test suite', () => {
 						DonationAlertsAuthModule.register({
 							type: 'static',
 							clientId: MOCK_CLIENT_ID,
-							scopes: MOCK_SCOPES
-						})
+							scopes: MOCK_SCOPES,
+						}),
 					],
 					inject: [DONATION_ALERTS_AUTH_PROVIDER],
-					useFactory: (authProvider: AuthProvider) => {
-						return { authProvider };
-					}
-				})
+					useFactory: (authProvider: AuthProvider) => ({ authProvider }),
+				}),
 			]);
 
 			const apiClientTestingService = app.get(ApiClientTestingService);
@@ -128,14 +124,12 @@ describe('Donation Alerts API module test suite', () => {
 					isGlobal: true,
 					type: 'static',
 					clientId: MOCK_CLIENT_ID,
-					scopes: MOCK_SCOPES
+					scopes: MOCK_SCOPES,
 				}),
 				DonationAlertsApiModule.registerAsync({
 					inject: [DONATION_ALERTS_AUTH_PROVIDER],
-					useFactory: (authProvider: AuthProvider) => {
-						return { authProvider };
-					}
-				})
+					useFactory: (authProvider: AuthProvider) => ({ authProvider }),
+				}),
 			]);
 
 			const apiClientTestingService = app.get(ApiClientTestingService);

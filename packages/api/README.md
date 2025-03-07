@@ -56,9 +56,9 @@ import { DonationAlertsApiModule } from '@nestjs-donation-alerts/api';
 			isGlobal: true,
 			authProvider: new RefreshingAuthProvider({
 				// ...
-			})
-		})
-	]
+			}),
+		}),
+	],
 })
 export class AppModule {}
 ```
@@ -84,9 +84,9 @@ import { DonationAlertsApiModule } from '@nestjs-donation-alerts/api';
 					type: 'refreshing',
 					clientId: configService.get('DA_CLIENT_ID'),
 					clientSecret: configService.get('DA_CLIENT_SECRET'),
-					scopes: configService.get('DA_SCOPES')
+					scopes: configService.get('DA_SCOPES'),
 				};
-			}
+			},
 		}),
 		DonationAlertsApiModule.registerAsync({
 			isGlobal: true,
@@ -95,9 +95,9 @@ import { DonationAlertsApiModule } from '@nestjs-donation-alerts/api';
 				// Here we are able to access the auth provider instance
 				// provided by DonationAlertsAuthModule
 				return { authProvider };
-			}
-		})
-	]
+			},
+		}),
+	],
 })
 export class AppModule {}
 ```

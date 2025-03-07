@@ -65,9 +65,9 @@ import { DonationAlertsAuthModule } from '@nestjs-donation-alerts/auth';
 			isGlobal: true,
 			type: 'static',
 			clientId: '<CLIENT_ID>',
-			scopes: ['oauth-user-show', 'oauth-donation-index', 'oauth-custom_alert-store']
-		})
-	]
+			scopes: ['oauth-user-show', 'oauth-donation-index', 'oauth-custom_alert-store'],
+		}),
+	],
 })
 export class AppModule {}
 ```
@@ -90,11 +90,11 @@ import { DonationAlertsAuthModule } from '@nestjs-donation-alerts/auth';
 					type: 'refreshing',
 					clientId: configService.get('DA_CLIENT_ID'),
 					clientSecret: configService.get('DA_CLIENT_SECRET'),
-					scopes: configService.get('DA_SCOPES')
+					scopes: configService.get('DA_SCOPES'),
 				};
-			}
-		})
-	]
+			},
+		}),
+	],
 })
 export class AppModule {}
 ```
@@ -143,7 +143,7 @@ import { DonationAlertsApiModule } from '@nestjs-donation-alerts/api';
 	imports: [
 		DonationAlertsAuthModule.registerAsync({
 			// Must be true to make it reusable
-			isGlobal: true
+			isGlobal: true,
 			// ... other configuration
 		}),
 		DonationAlertsApiModule.registerAsync({
@@ -153,9 +153,9 @@ import { DonationAlertsApiModule } from '@nestjs-donation-alerts/api';
 			inject: [DONATION_ALERTS_AUTH_PROVIDER],
 			useFactory: (authProvider: AuthProvider) => {
 				return { authProvider };
-			}
-		})
-	]
+			},
+		}),
+	],
 })
 export class AppModule {}
 ```

@@ -1,6 +1,6 @@
-const transformPattern = '^.+\\.ts?$';
+const transformPattern = String.raw`^.+\.ts?$`;
 const transform = {
-	[transformPattern]: ['ts-jest', { diagnostics: true, tsconfig: './tsconfig.json' }]
+	[transformPattern]: ['ts-jest', { diagnostics: true, tsconfig: './tsconfig.json' }],
 };
 
 /** @type {import('ts-jest').JestConfigWithTsJest} */
@@ -15,24 +15,24 @@ module.exports = {
 	collectCoverageFrom: [
 		'<rootDir>/packages/*/src/**/*.ts',
 		'!<rootDir>/packages/**/src/**/index.ts',
-		'!<rootDir>/packages/**/src/constants.ts'
+		'!<rootDir>/packages/**/src/constants.ts',
 	],
 	moduleDirectories: ['node_modules'],
 	projects: [
 		{
 			displayName: 'auth',
 			testMatch: ['<rootDir>/tests/auth/*.spec.ts'],
-			transform
+			transform,
 		},
 		{
 			displayName: 'api',
 			testMatch: ['<rootDir>/tests/api/*.spec.ts'],
-			transform
+			transform,
 		},
 		{
 			displayName: 'events',
 			testMatch: ['<rootDir>/tests/events/*.spec.ts'],
-			transform
-		}
-	]
+			transform,
+		},
+	],
 };

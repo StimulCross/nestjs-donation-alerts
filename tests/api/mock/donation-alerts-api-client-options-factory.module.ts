@@ -3,6 +3,6 @@ import { DonationAlertsApiClientOptionsFactory } from './donation-alerts-api-cli
 
 @Module({
 	providers: [DonationAlertsApiClientOptionsFactory],
-	exports: [DonationAlertsApiClientOptionsFactory]
+	exports: [DonationAlertsApiClientOptionsFactory],
 })
 export class DonationAlertsApiClientOptionsFactoryModule {}
