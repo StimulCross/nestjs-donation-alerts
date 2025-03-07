@@ -45,7 +45,7 @@
 		"rxjs": "*"
 	},
 	"devDependencies": {
-		"@donation-alerts/auth": "^^4.0.0",
+		"@donation-alerts/auth": "^4.0.0",
 		"@nestjs/common": "^11.0.11",
 		"@nestjs/core": "^11.0.11",
 		"reflect-metadata": "^0.2.2",
